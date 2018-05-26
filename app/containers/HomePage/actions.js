@@ -15,7 +15,10 @@
  *    }
  */
 
-import { CHANGE_USERNAME } from './constants';
+import { 
+   FETCH_BEER_DATA_REQUEST,
+   FETCH_BEER_DATA_SUCCESS,
+   FETCH_BEER_DATA_FAILURE} from './constants';
 
 /**
  * Changes the input field of the form
@@ -24,9 +27,22 @@ import { CHANGE_USERNAME } from './constants';
  *
  * @return {object}    An action object with a type of CHANGE_USERNAME
  */
-export function changeUsername(name) {
+
+
+export function fetchBeerDataRequest() {
   return {
-    type: CHANGE_USERNAME,
-    name
+    type: FETCH_BEER_DATA_REQUEST,
+  };
+}
+
+export function fetchBeerDataSuccess(beerData) {
+  return {
+    type: FETCH_BEER_DATA_SUCCESS,
+    beerData
+  };
+}
+export function fetchBeerDataFailure() {
+  return {
+    type: FETCH_BEER_DATA_FAILURE,
   };
 }

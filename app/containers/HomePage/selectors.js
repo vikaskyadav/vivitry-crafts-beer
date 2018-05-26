@@ -11,7 +11,13 @@ const makeSelectUsername = () => createSelector(
   (homeState) => homeState.get('username')
 );
 
+const loadBeerData = () => createSelector(
+  selectHome,
+  (globalState) => globalState.get('beerData')
+);
+
 export {
   selectHome,
   makeSelectUsername,
+  loadBeerData,
 };

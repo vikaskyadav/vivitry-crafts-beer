@@ -8,21 +8,35 @@ import { reposLoaded, repoLoadingError } from 'containers/App/actions';
 
 import request from 'utils/request';
 import { makeSelectUsername } from 'containers/HomePage/selectors';
+import { fetchBeerDataFailure, fetchBeerDataSuccess } from './actions';
+import { FETCH_BEER_DATA_REQUEST } from './constants';
 
 /**
  * Github repos request/response handler
  */
-export function* getRepos() {
-  // Select username from store
-  const username = yield select(makeSelectUsername());
-  const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
+// export function* getRepos() {
+//   // Select username from store
+//   const username = yield select(makeSelectUsername());
+//   const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
+
+//   try {
+//     // Call our request helper (see 'utils/request')
+//     const repos = yield call(request, requestURL);
+//     yield put(reposLoaded(repos, username));
+//   } catch (err) {
+//     yield put(repoLoadingError(err));
+//   }
+// }
+
+export function* getBeerData() {
+  const requestURL = `http://starlord.hackerearth.com/beercraft`;
 
   try {
     // Call our request helper (see 'utils/request')
-    const repos = yield call(request, requestURL);
-    yield put(reposLoaded(repos, username));
+    const beerData = yield call(request, requestURL);
+    yield put(fetchBeerDataSuccess(beerData));
   } catch (err) {
-    yield put(repoLoadingError(err));
+    yield put(fetchBeerDataFailure(err));
   }
 }
 
@@ -34,5 +48,6 @@ export default function* githubData() {
   // By using `takeLatest` only the result of the latest API call is applied.
   // It returns task descriptor (just like fork) so we can continue execution
   // It will be cancelled automatically on component unmount
-  yield takeLatest(LOAD_REPOS, getRepos);
+  // yield takeLatest(LOAD_REPOS, getRepos);
+  yield takeLatest(FETCH_BEER_DATA_REQUEST, getBeerData);
 }
