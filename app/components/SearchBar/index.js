@@ -29,7 +29,7 @@ export default class SearchBar extends React.Component{
           <Divider />
           {
                Object.keys(beerByStyle).map((beerStyle,index) =>(
-                   <MenuItem value={beerStyle}>{beerStyle}</MenuItem>
+                   <MenuItem value={beerStyle} key={index}>{beerStyle}</MenuItem>
 
                ))
            }  

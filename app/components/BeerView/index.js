@@ -6,6 +6,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import groupBy from 'lodash/groupBy';
 import orderBy from 'lodash/orderBy';
 import filter from 'lodash/filter';
+import Button from "@material-ui/core/Button";
 
 // import { Grid, Row, Col } from 'react-flexbox-grid';
 import { Container, Row, Col } from "react-grid-system";
@@ -61,17 +62,12 @@ export default class BeerView extends React.Component{
             } loader={"<p>...</p>"} endMessage={""} style={{ padding: "5px" }}>
             <Container fluid>
               <Row style={{ marginTop: "32px" }}>
-                <Col lg={6} sm={12} md={12}>
-                  <p style={{ fontFamily: 'Roboto', color: '#999', fontWeight: '500'}}>
-                  { this.state.beerSortedByStyle.length
-                  ?
-                  this.state.beerSortedByStyle.length + " beers found in Style" + this.state.selectedStyle
-                  :
-                  ''   
-                  }
+                <Col lg={6} sm={12} md={6} xs={12}>
+                  <p style={{ fontFamily: "Roboto", color: "#999", fontWeight: "500", marginTop: "5px" }}>
+                    {this.state.beerSortedByStyle.length ? this.state.beerSortedByStyle.length + " beers found in Style" + this.state.selectedStyle : ""}
                   </p>
                 </Col>
-                <Col lg={6} sm={12} md={12}>
+                <Col lg={6} sm={12} md={6} xs={12}>
                   <SearchBar beerByStyle={beerByStyle} getBeerStyle={this.handleBeerByStyle} />
                 </Col>
               </Row>
@@ -210,6 +206,11 @@ export default class BeerView extends React.Component{
                               IBU: {beer.ibu ? beer.ibu : "0"}
                             </p>
                           </CardContent>
+                          <div style={{ textAlign: "center" }}>
+                            <Button style={{backgroundColor:"#eb7c1c", color:'#fff'}} variant="raised">
+                              Add To Cart
+                            </Button>
+                          </div>
                         </Card>
                       </Col>
                     ))}

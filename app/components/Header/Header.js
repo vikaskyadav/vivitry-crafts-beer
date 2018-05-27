@@ -47,12 +47,14 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
           <Typography variant="title" color="inherit" style={styles.flex}>
             Vivriti Crafts Beer
           </Typography>
-          <p style={{ fontFamily: "Roboto" }}>
-            Filter by Alcholic Content :{" "}
-          </p>
-          <span>&nbsp;ASC</span>
+          <p style={{ fontFamily: "Roboto" }}>Alcholic Content : </p>
+          <span style={{ fontWeight: "500", fontFamily: "Roboto" }}>
+            &nbsp;ASC
+          </span>
           <Radio checked={this.state.selectedValue === "ASC"} onChange={this.handleChange} value="ASC" name="ASC" aria-label="ASC" />
-          DESC
+          <span style={{ fontWeight: "500", fontFamily: "Roboto" }}>
+            &nbsp;DESC
+          </span>
           <Radio checked={this.state.selectedValue === "DESC"} onChange={this.handleChange} value="DESC" name="DESC" aria-label="DESC" />
           <Chip avatar={<Avatar style={{ backgroundColor: "#fff", color: "#3493c6" }}>
                 <ShoppingCartIcon />
