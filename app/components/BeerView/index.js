@@ -3,7 +3,8 @@ import React from 'react';
 import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { sortBy} from 'lodash/sortBy';
+import sortBy from 'lodash/sortBy';
+import orderBy from 'lodash/orderBy';
 
 // import { Grid, Row, Col } from 'react-flexbox-grid';
 import { Container, Row, Col } from "react-grid-system";
@@ -26,12 +27,19 @@ const styles = theme => ({
 
 export default class BeerView extends React.Component{
     render() {
-        const {beerData, filter} = this.props;        
+        const {beerData, filter} = this.props;
+
+        const beerDataSorted = filter == 'ASC'
+        ?
+        orderBy(beerData, function(beer){ return beer.abv ? beer.abv : '0.00'}, ['asc'])
+        :
+        orderBy(beerData, function(beer){ return beer.abv ? beer.abv : '0.00'}, ['desc'])
+        
         return <InfiniteScroll dataLength={beerData ? beerData.length : 0} // next={fetchData} //This is important field to render the next data
             hasMore={false} loader={"<p>...</p>"} endMessage={""} style={{padding: '5px'}}>
             <Container fluid>
             <Row style={{ marginTop : '30px'}}>
-              {beerData
+              {beerDataSorted
                 .slice(0, 1000)
                 .map((beer, index) => (
                   <Col
