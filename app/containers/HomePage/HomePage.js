@@ -23,7 +23,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
       selectedFilter : 'ASC',
     };
 
-   componentDidMount() {
+   componentWillMount() {
     this.props.onMount();
   };
 
@@ -33,7 +33,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
   
 
   render() {
-    const { loading, error, repos, beerData } = this.props;
+    const { loading, error, repos, beerData, beerStyles} = this.props;
     const reposListProps = {
       loading,
       error,
@@ -47,7 +47,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
         </Helmet>
         <Header setFilter={this.handleFilter} />
 
-        <BeerView beerData={beerData ? beerData : []} filter={ this.state.selectedFilter} />
+        <BeerView beerData={beerData ? beerData : []} filter={ this.state.selectedFilter} beerStyles={beerStyles} />
       </div>;
   }
 }

@@ -9,8 +9,11 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Switch from "@material-ui/core/Switch";
 import Radio from '@material-ui/core/Radio';
+import Chip from "@material-ui/core/Chip";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 import ContentFilter from './ContentFilter';
+import { Avatar } from '@material-ui/core';
 
 const styles = {
   root: {
@@ -44,13 +47,17 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
           <Typography variant="title" color="inherit" style={styles.flex}>
             Vivriti Crafts Beer
           </Typography>
-            <p style={{ fontFamily: "Roboto" }}>Filter by Alcholic Content :</p>
-             <span>
-             ASC
-             </span>
-            <Radio checked={this.state.selectedValue === "ASC"} onChange={this.handleChange} value="ASC" name="ASC" aria-label="ASC" />
-             DESC
-            <Radio checked={this.state.selectedValue === "DESC"} onChange={this.handleChange} value="DESC" name="DESC" aria-label="DESC" />
+          <p style={{ fontFamily: "Roboto" }}>
+            Filter by Alcholic Content :{" "}
+          </p>
+          <span>&nbsp;ASC</span>
+          <Radio checked={this.state.selectedValue === "ASC"} onChange={this.handleChange} value="ASC" name="ASC" aria-label="ASC" />
+          DESC
+          <Radio checked={this.state.selectedValue === "DESC"} onChange={this.handleChange} value="DESC" name="DESC" aria-label="DESC" />
+          <Chip avatar={<Avatar style={{ backgroundColor: "#fff", color: "#3493c6" }}>
+                <ShoppingCartIcon />
+              </Avatar>} label="0" style={{ backgroundColor: "#fff" } // onClick={handleClick}
+            } />
         </Toolbar>
       </AppBar>;
   }

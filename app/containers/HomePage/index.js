@@ -10,7 +10,7 @@ import {
 } from "containers/App/selectors";
 import { loadRepos } from '../App/actions';
 import { fetchBeerDataRequest } from './actions';
-import { makeSelectUsername, loadBeerData } from "./selectors";
+import { makeSelectUsername, loadBeerData, loadBeerStyle } from "./selectors";
 import reducer from './reducer';
 import saga from './saga';
 import HomePage from './HomePage';
@@ -30,6 +30,7 @@ const mapStateToProps = createStructuredSelector({
   loading: makeSelectLoading(),
   error: makeSelectError(),
   beerData: loadBeerData(),
+  beerStyles: loadBeerStyle(loadBeerData()),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

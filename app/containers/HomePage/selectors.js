@@ -3,6 +3,8 @@
  */
 
 import { createSelector } from 'reselect';
+import filter from 'lodash/filter';
+import groupBy from 'lodash/groupBy';
 
 const selectHome = (state) => state.get('home');
 
@@ -16,8 +18,14 @@ const loadBeerData = () => createSelector(
   (globalState) => globalState.get('beerData')
 );
 
+const loadBeerStyle = () => createSelector(
+  selectHome,
+  (globalState) => globalState.get('beerData'),
+);
+
 export {
   selectHome,
   makeSelectUsername,
   loadBeerData,
+  loadBeerStyle,
 };
